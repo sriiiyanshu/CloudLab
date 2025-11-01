@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      input {
+        width: 80px;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        text-align: center;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      .result {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        color: green;
+      }
+      .error {
+        color: red;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Sum Calculator</h2>
+      <form method="POST" action="/calculate">
+        <input type="text" name="num1" placeholder="Number 1" required value="{{ num1 or '' }}" />
+        <input type="text" name="num2" placeholder="Number 2" required value="{{ num2 or '' }}" />
+        <br />
+        <button type="submit">Calculate</button>
+      </form>
+
+      {% if result is defined %}
+      <div class="result">Sum = {{ result }}</div>
+      {% endif %} {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
